@@ -6,7 +6,7 @@ namespace ExcelTestApp.Helpers
     {
         public static string GetFullPathOfTestDocument(string documentName)
         {
-            return Path.Combine(Environment.CurrentDirectory, TestDataPathConstants.TestDataFolder, documentName);
+            return Path.Combine(Environment.CurrentDirectory, PathConstants.TestDataFolder, documentName);
         }
     }
 }
