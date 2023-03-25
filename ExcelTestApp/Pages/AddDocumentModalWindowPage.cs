@@ -3,10 +3,10 @@ using OpenQA.Selenium;
 
 namespace ExcelTestApp.Pages
 {
-    public class AddDocumentModalWindowPage : PageObjectBase
+    internal class AddDocumentModalWindowPage : PageObjectBase
     {
-        public Button OpenButton => new(GetElement(By.XPath("//*[@ClassName='Button' and @AutomationId='1']")));
+        internal Button OpenButton => new(GetElement(By.XPath("//*[@ClassName='Button' and @AutomationId='1']")));
 
-        public TextBox SearchFileTextBox => new(GetElement(By.XPath("//*[@ClassName='Edit' and @AutomationId='1148']")));
+        internal TextBox SearchFileTextBox => new(GetElement(By.XPath("//*[@ClassName='Edit' and @AutomationId='1148']")));
     }
 }

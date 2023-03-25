@@ -1,15 +1,24 @@
-﻿using ExcelTestApp;
+﻿using System.Runtime.CompilerServices;
+using ExcelTestApp;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 
 namespace UITests
 {
     public class TestBase
     {
-        protected WindowsDriver<WindowsElement> Driver { get; }
-
-        public TestBase()
+        private IWebDriver _driver;
+        
+        [SetUp]
+        public void BeforeEach()
         {
-            Driver = ExcelWebDriver.GetDriver();
+            _driver = ExcelWebDriver.GetDriver();
+        }
+
+        [TearDown]
+        public void AfterEach()
+        {
+            _driver.Quit();
         }
     }
 }

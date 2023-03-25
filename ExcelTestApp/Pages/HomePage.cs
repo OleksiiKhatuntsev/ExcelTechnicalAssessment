@@ -3,8 +3,8 @@ using OpenQA.Selenium;
 
 namespace ExcelTestApp.Pages
 {
-    public class HomePage : PageObjectBase
+    internal class HomePage : PageObjectBase
     {
-        public Button BlankWorkbookButton => new(GetElement(By.Name("Blank workbook")));
+        internal Button BlankWorkbookButton => new(GetElement(By.Name("Blank workbook")));
     }
 }

@@ -3,10 +3,10 @@ using OpenQA.Selenium;
 
 namespace ExcelTestApp.Pages
 {
-    public class DataSnipperDocumentViewerToolbarPage : PageObjectBase
+    internal class DataSnipperDocumentViewerToolbarPage : PageObjectBase
     {
-        public TextBox SearchTextBox => new(GetElement(By.XPath("//*[@AutomationId='SearchBar']")));
+        internal TextBox SearchTextBox => new(GetElement(By.XPath("//*[@AutomationId='SearchBar']")));
 
-        public Button SnipWithPageNumber(int pageNumber) => new(GetElement(By.Name($"Page {pageNumber}")));
+        internal Button SnipWithPageNumber(int pageNumber) => new(GetElement(By.Name($"Page {pageNumber}")));
     }
 }

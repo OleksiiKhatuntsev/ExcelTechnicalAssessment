@@ -3,9 +3,9 @@ using OpenQA.Selenium;
 
 namespace ExcelTestApp.Pages
 {
-    public class ExcelGrid : PageObjectBase
+    internal class ExcelGridPage : PageObjectBase
     {
-        public TextBox ExcelCellByColumnAndRow(string columnLetter, int rowNumber) =>
+        internal TextBox ExcelCellByColumnAndRow(string columnLetter, int rowNumber) =>
             new(GetElement(By.XPath($"//*[@AutomationId='{columnLetter}{rowNumber}']")));
     }
 }

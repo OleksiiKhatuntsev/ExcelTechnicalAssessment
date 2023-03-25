@@ -4,9 +4,9 @@ using OpenQA.Selenium.Support.UI;
 
 namespace ExcelTestApp.Pages
 {
-    public class PageObjectBase
+    internal class PageObjectBase
     {
-        protected WindowsDriver<WindowsElement> Driver { get; }
+        private WindowsDriver<WindowsElement> Driver { get; }
 
         internal PageObjectBase()
         {

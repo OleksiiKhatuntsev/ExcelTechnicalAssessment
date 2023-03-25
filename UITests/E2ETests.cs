@@ -1,36 +1,22 @@
-using ExcelTestApp.Pages;
+using ExcelTestApp.Facade;
 using FluentAssertions;
 
 namespace UITests
 {
     public class E2ETests : TestBase
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
-        public void Test1()
+        public void SelectTextFromPdfTest()
         {
-            AddDocumentModalWindowPage addDocumentModalWindowPage = new AddDocumentModalWindowPage();
-            HomePage homePage = new HomePage();
-            DataSnipperToolBarPage dataSnipperToolBarPage = new DataSnipperToolBarPage();
-            DataSnipperDocumentViewerToolbarPage toolbarPage = new DataSnipperDocumentViewerToolbarPage();
-            ExcelGrid excelGrid = new ExcelGrid();
+            DataSnipperFacade dataSnipperFacade = new DataSnipperFacade();
+            ExcelFacade excelFacade = new ExcelFacade();
 
-            homePage.BlankWorkbookButton.Click();
-            
-            dataSnipperToolBarPage.DataSnipperNavigationButton.Click();
-            dataSnipperToolBarPage.DImportDocumentsButton.Click();
-            
-            addDocumentModalWindowPage.SearchFileTextBox.SetText(@"C:\Users\Kaelthas\Downloads\Oleksii Khatuntsev CV.pdf");
-            addDocumentModalWindowPage.OpenButton.Click();
+            excelFacade.CreateFileAndOpenDataSnipperTab();
 
-            toolbarPage.SearchTextBox.SetTextAndPressEnter("QA Automation engineer with");
-            toolbarPage.SnipWithPageNumber(1).Click();
+            dataSnipperFacade.ClickAddDocumentAndSelectFile(@"C:\Users\Kaelthas\Downloads\Oleksii Khatuntsev CV.pdf");
+            dataSnipperFacade.SearchAndSnip("QA Automation engineer with");
             
-            var result = excelGrid.ExcelCellByColumnAndRow("A", 1).GetText();
+            var result = excelFacade.GetDataFromCell();
             result.Should().Be("QA Automation engineer with");
         }
     }

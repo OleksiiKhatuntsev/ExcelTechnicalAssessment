@@ -22,7 +22,8 @@ namespace ExcelTestApp
             // Create the WindowsDriver instance
             _driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723/wd/hub"), appiumOptions);
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(0);
-            
+            _driver.Manage().Window.Maximize();
+
             return _driver;
         }
     }
