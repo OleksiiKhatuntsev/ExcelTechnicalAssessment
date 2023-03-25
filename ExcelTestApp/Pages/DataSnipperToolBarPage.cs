@@ -3,10 +3,12 @@ using OpenQA.Selenium;
 
 namespace ExcelTestApp.Pages
 {
-    public class DataSnipperToolBarPage : PageObjectBase
+    internal class DataSnipperToolBarPage : PageObjectBase
     {
-        public Button DataSnipperNavigationButton => new(GetElement(By.Name("DATASNIPPER")));
+        internal Button DataSnipperNavigationButton => new(GetElement(By.Name("DATASNIPPER")));
 
-        public Button DImportDocumentsButton => new(GetElement(By.Name("Import Documents")));
+        internal Button ImportDocumentsButton => new(GetElement(By.Name("Import Documents")));
+
+        internal Button DocumentsButton => new (GetElement(By.XPath("//*[@Name='Documents' and @ClassName='NetUITWBtnMenuItem']")));
     }
 }
