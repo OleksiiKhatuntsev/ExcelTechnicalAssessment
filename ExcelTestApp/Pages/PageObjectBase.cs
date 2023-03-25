@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using ExcelTestApp.Constants;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Support.UI;
 
@@ -13,11 +14,19 @@ namespace ExcelTestApp.Pages
             Driver = ExcelWebDriver.GetDriver();
         }
 
-        internal WindowsElement GetElement(By by)
+        internal WindowsElement GetElement(By by, int waitForElementSeconds = WaitConstants.DefaultWait)
         {
-            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
-            var element = wait.Until(_ => Driver.FindElement(by));
-            return element;
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(waitForElementSeconds));
+            try 
+            {
+                return wait.Until(_ => Driver.FindElement(by));
+            }
+            catch (Exception e)
+            {
+                //Log
+                return null;
+            }
+            
         }
     }
 }

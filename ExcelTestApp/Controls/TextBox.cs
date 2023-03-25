@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using ExcelTestApp.Constants;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Support.UI;
 
@@ -6,20 +7,16 @@ namespace ExcelTestApp.Controls
 {
     public class TextBox : ControlBase
     {
-        private readonly WindowsElement _element;
+        internal TextBox(WindowsElement element) : base(element)
+        { }
 
-        internal TextBox(WindowsElement element)
+        public void SetText(string text, int secondsToWaitElement = WaitConstants.DefaultWait)
         {
-            _element = element;
-        }
-
-        public void SetText(string text)
-        {
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(5));
-            var waitResult = wait.Until(_ => _element.Displayed && _element.Enabled);
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(secondsToWaitElement));
+            var waitResult = wait.Until(_ => Element.Displayed && Element.Enabled);
             if (waitResult)
             {
-                _element.SendKeys(text);
+                Element.SendKeys(text);
             }
             else
             {
@@ -27,23 +24,14 @@ namespace ExcelTestApp.Controls
             }
         }
 
-        public void SetTextAndPressEnter(string text)
+        public void SetTextAndPressEnter(string text, int secondsToWaitElement = WaitConstants.DefaultWait)
         {
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(5));
-            var waitResult = wait.Until(_ => _element.Displayed && _element.Enabled);
-            if (waitResult)
-            {
-                _element.SendKeys(text + Keys.Enter);
-            }
-            else
-            {
-                throw new ElementNotInteractableException("Can't set text on the element");
-            }
+            SetText(text + Keys.Enter, secondsToWaitElement);
         }
 
         public string GetText()
         {
-            return _element.Text;
+            return Element.Text;
         }
     }
 }

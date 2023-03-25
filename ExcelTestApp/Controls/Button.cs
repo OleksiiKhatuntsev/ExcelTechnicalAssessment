@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using ExcelTestApp.Constants;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Support.UI;
 
@@ -6,20 +7,16 @@ namespace ExcelTestApp.Controls
 {
     public class Button : ControlBase
     {
-        private readonly WindowsElement _element;
+        internal Button(WindowsElement element) : base(element)
+        { }
 
-        internal Button(WindowsElement element)
+        public void Click(int secondsToWaitElement = WaitConstants.DefaultWait)
         {
-            _element = element;
-        }
-
-        public void Click()
-        {
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(5));
-            var waitResult = wait.Until(_ => _element.Displayed && _element.Enabled);
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(secondsToWaitElement));
+            var waitResult = wait.Until(_ => Element.Displayed && Element.Enabled);
             if (waitResult)
             {
-                _element.Click();
+                Element.Click();
             }
             else
             {
