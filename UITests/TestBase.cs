@@ -5,8 +5,8 @@ namespace UITests
 {
     public class TestBase
     {
-        protected DataSnipperFacade DataSnipperFacade { get; set; }
-        protected ExcelFacade ExcelFacade { get; set; }
+        protected DataSnipperFacade DataSnipperFacade { get; private set; }
+        protected ExcelFacade ExcelFacade { get; private set; }
 
         [OneTimeSetUp]
         public void BeforeAll()
