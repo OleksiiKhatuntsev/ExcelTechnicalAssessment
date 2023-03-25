@@ -1,4 +1,5 @@
-using ExcelTestApp.Facade;
+using ExcelTestApp.Constants;
+using ExcelTestApp.Helpers;
 using FluentAssertions;
 
 namespace UITests
@@ -8,16 +9,15 @@ namespace UITests
         [Test]
         public void SelectTextFromPdfTest()
         {
-            DataSnipperFacade dataSnipperFacade = new DataSnipperFacade();
-            ExcelFacade excelFacade = new ExcelFacade();
+            string searchStringAsActualResult = "QA Automation engineer with";
 
-            excelFacade.CreateFileAndOpenDataSnipperTab();
+            ExcelFacade.CreateFileAndOpenDataSnipperTab();
 
-            dataSnipperFacade.ClickAddDocumentAndSelectFile(@"C:\Users\Kaelthas\Downloads\Oleksii Khatuntsev CV.pdf");
-            dataSnipperFacade.SearchAndSnip("QA Automation engineer with");
+            DataSnipperFacade.ClickAddDocumentAndSelectFile(DocumentLoadHelper.GetFullPathOfTestDocument(TestDataPathConstants.CvTestDocument));
+            DataSnipperFacade.SearchAndSnip(searchStringAsActualResult);
             
-            var result = excelFacade.GetDataFromCell();
-            result.Should().Be("QA Automation engineer with");
+            var result = ExcelFacade.GetDataFromCell();
+            result.Should().Be(searchStringAsActualResult);
         }
     }
 }

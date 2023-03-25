@@ -5,8 +5,11 @@
         public void ClickAddDocumentAndSelectFile(string pathToFile)
         {
             DataSnipperToolBarPage.ImportDocumentsButton.Click();
-            DataSnipperToolBarPage.DocumentsButton.Click();
 
+            if (DataSnipperToolBarPage.DocumentsButton.WaitForDisplayed())
+            {
+                DataSnipperToolBarPage.DocumentsButton.Click();
+            }
             AddDocumentModalWindowPage.SearchFileTextBox.SetText(pathToFile);
             AddDocumentModalWindowPage.OpenButton.Click();
         }

@@ -1,24 +1,34 @@
-﻿using System.Runtime.CompilerServices;
-using ExcelTestApp;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Windows;
+﻿using System.Diagnostics;
+using ExcelTestApp.Facade;
 
 namespace UITests
 {
     public class TestBase
     {
-        private IWebDriver _driver;
-        
+        protected DataSnipperFacade DataSnipperFacade { get; set; }
+        protected ExcelFacade ExcelFacade { get; set; }
+
+        [OneTimeSetUp]
+        public void BeforeAll()
+        {
+            DataSnipperFacade = new DataSnipperFacade();
+            ExcelFacade = new ExcelFacade();
+        }
+
         [SetUp]
         public void BeforeEach()
-        {
-            _driver = ExcelWebDriver.GetDriver();
-        }
+        { }
 
         [TearDown]
         public void AfterEach()
         {
-            _driver.Quit();
+            var excelProcesses = Process.GetProcesses().
+                                                Where(pr => pr.ProcessName == "EXCEL");
+
+            foreach (var process in excelProcesses)
+            {
+                process.Kill();
+            }
         }
     }
 }
