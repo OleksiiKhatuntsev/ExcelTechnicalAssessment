@@ -13,7 +13,7 @@ namespace UITests
 
             ExcelFacade.CreateFileAndOpenDataSnipperTab();
 
-            DataSnipperFacade.ClickAddDocumentAndSelectFile(DocumentLoadHelper.GetFullPathOfTestDocument(TestDataPathConstants.CvTestDocument));
+            DataSnipperFacade.ClickAddDocumentAndSelectFile(DocumentLoadHelper.GetFullPathOfTestDocument(PathConstants.CvTestDocument));
             DataSnipperFacade.SearchAndSnip(searchStringAsActualResult);
             
             var result = ExcelFacade.GetDataFromCell();

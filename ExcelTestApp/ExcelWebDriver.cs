@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium.Appium;
+﻿using ExcelTestApp.Constants;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 
 namespace ExcelTestApp
@@ -15,9 +16,9 @@ namespace ExcelTestApp
             }
 
             var appiumOptions = new AppiumOptions();
-            appiumOptions.AddAdditionalCapability("app", @"C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE");
-            appiumOptions.AddAdditionalCapability("deviceName", "WindowsPC");
-            appiumOptions.AddAdditionalCapability("platformName", "Windows");
+            appiumOptions.AddAdditionalCapability(AppiumCapabilitiesConstants.AppCapability, PathConstants.ExcelPathConstant);
+            appiumOptions.AddAdditionalCapability(AppiumCapabilitiesConstants.DeviceNameCapability, AppiumCapabilitiesConstants.DeviceNameValueCapability);
+            appiumOptions.AddAdditionalCapability(AppiumCapabilitiesConstants.PlatformNameCapability, AppiumCapabilitiesConstants.PlatformNameValueCapability);
 
             // Create the WindowsDriver instance
             _driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723/wd/hub"), appiumOptions);
